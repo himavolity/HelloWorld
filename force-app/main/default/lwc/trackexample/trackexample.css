@@ -1,0 +1,17 @@
+.box {
+    color: rgb(255, 0, 255);
+    background-color: blueviolet;
+    width: 500;
+    height: 300;
+    border-top: 50px;
+    border-color: green;
+    border-style: groove;
+    border-left: 80px;
+    border-right:80px;
+    border-color: blueviolet;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    font-weight: bold;
+
+
+}

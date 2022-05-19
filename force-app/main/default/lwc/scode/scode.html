@@ -1,0 +1,10 @@
+<template>
+<lightning-progress-indicator current-step={value} type="path" variant="brand">
+    <lightning-progress-step label="student detail" value="step-1" onload={studentpage} onclick={studentpage} ></lightning-progress-step>
+    <lightning-progress-step label="contact detail" value="step-2" onclick={contactpage} ></lightning-progress-step>
+    <lightning-progress-step label="course detail" value="step-3" onclick={coursepage}></lightning-progress-step>
+    <lightning-progress-step label="payment detail" value="step-4" onclick={paymentpage} ></lightning-progress-step>
+    <lightning-progress-step label="review detail" value="step-5" onclick={handlethis} ></lightning-progress-step>
+</lightning-progress-indicator>
+
+</template>

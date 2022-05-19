@@ -1,0 +1,68 @@
+<template>
+
+    <div class="slds-p-horizontal_large ">
+        <lightning-progress-indicator current-step={currentPath} type="path" variant="base">
+            <lightning-progress-step label="student Details" value="1" onclick={pathHandler} current-state={currentPath}
+                steps={pathItems} onselectedpath={selectedpath}></lightning-progress-step>
+            <lightning-progress-step label="contact Details" value="2" onclick={pathHandler} current-state={currentPath}
+                steps={pathItems} onselectedpath={selectedpath}></lightning-progress-step>
+            <lightning-progress-step label="Course Details" value="3" onclick={pathHandler} current-state={currentPath}
+                steps={pathItems} onselectedpath={selectedpath}></lightning-progress-step>
+            <lightning-progress-step label="Payment Details" value="4" onclick={pathHandler} current-state={currentPath}
+                steps={pathItems} onselectedpath={selectedpath}></lightning-progress-step>
+            <lightning-progress-step label="Review" value="5" onclick={pathHandler} current-state={currentPath}
+                steps={pathItems} onselectedpath={selectedpath}></lightning-progress-step>
+        </lightning-progress-indicator>
+        <br>
+    </div>
+    <template if:true={isStep1}>
+
+        <div class="slds-p-horizontal_xx-large">
+            <c-studentdetails></c-studentdetails>
+        </div>
+
+    </template>
+    <template if:true={isStep2}>
+
+        <div class="slds-p-horizontal_xx-large">
+            <c-contactdetails></c-contactdetails>
+        </div>
+
+    </template>
+    <template if:true={isStep3}>
+
+        <div class="slds-p-horizontal_xx-large">
+            <c-coursedetails ></c-coursedetails>
+        </div>
+
+    </template>
+    <template if:true={isStep4}>
+
+        <div class="slds-p-horizontal_xx-large">
+            <c-paymentdetails record-id={recordId}   oncomplete={nextHandler} onexit={exithome}
+            onprevious={backHandler} onlogerror={logError}>></c-paymentdetails>
+        </div>
+    </template>
+        <template if:true={isStep5}>
+
+        <div class="slds-p-horizontal_xx-large">
+            <c-review ></c-review>
+        </div>
+
+    </template>
+    <hr style="display: block; height: 2px; margin: 1px; padding: 10px; border-top: 3px solid rgb(3, 3, 61); ">
+  <!--  <div slot="footer" class="slds-clearfix">
+        <template if:false={isStep5}>
+            <lightning-button class="slds-m-horizontal_x-small slds-float_right" variant="brand" label="Save & Next"
+                title="Next" icon-name="utility:forward" onclick={nextHandler}>
+            </lightning-button>
+        </template>
+        <template if:false={isStep1}>
+            <lightning-button class="slds-m-horizontal_x-small slds-float_right" slot="actions" label="Previous"
+                title="back" icon-name="utility:back" onclick={backHandler}></lightning-button>
+        </template>
+        <lightning-button class="slds-m-horizontal_x-small slds-float_left" slot="actions" label="Exit Student Form"
+            title="back" icon-name="utility:close" onclick={exithome}></lightning-button>
+
+    </div>-->
+</template>

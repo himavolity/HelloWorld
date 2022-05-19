@@ -1,0 +1,13 @@
+<template>
+    <div class="box">
+    <lightning-card title="This is an example for track decorator">
+        <lightning-input type="string" label="enter the first name" name="fn" onchange={callme}></lightning-input>
+        <lightning-input type="string" label="enter the second name" name="sn" onchange={callme}></lightning-input>
+        <lightning-input type="integer" label="enter the age" name="a" onchange={callme}></lightning-input>
+        <h1> The value of firstname is {fullname.firstname}</h1>
+        <h1> The value of the lastname is {fullname.lastname}</h1>
+        <h1> the value of age is {fullname.age}</h1>
+
+    </lightning-card>
+</div>
+</template>

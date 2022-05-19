@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Input">
+        <div>
+    <lightning-input type="string" label="Enter your Name" name="fn"  onchange={callme}></lightning-input>
+    <lightning-input type="string" label="Enter your Id" name="Id"  onchange={callme}></lightning-input>
+    <lightning-input type="string" label="eligible" name="eli"  onchange={callme}></lightning-input>
+ 
+    The name is {name}<br/>
+    the id is {id}<br/>
+    the eligible is {eligible}
+</div>
+</lightning-card>
+</template>

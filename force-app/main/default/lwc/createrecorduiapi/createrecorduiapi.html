@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="UI Record API">
+        <lightning-record-view-form>
+        <lightning-output-field label="Enter Name" name="Name" type="text" value={formfields.Name}></lightning-output-field>
+        <lightning-output-field label="Enter lname" name="lName" type="text" value={formfields.LastName}></lightning-output-field>
+        <lightning-output-field label="Enter mname" name="mName" type="text" value={formfields.MiddleName}></lightning-output-field>
+       <lightning-input label="Enter dnum" name="dob" type="date" value={formfields.DoB}></lightning-input>
+        <lightning-input label="Enter dnum" name="gender" type="text" value={formfields.Gender}></lightning-input>
+        <lightning-input label="Enter dnum" name="dtype" type="text" value={formfields.DType}></lightning-input>
+        <lightning-input label="Enter dnum" name="dnum" type="number" value={formfields.DNum}></lightning-input>
+<lightning-button variant="brand" onclick={pressclick} label="submit"></lightning-button>
+</lightning-record-view-form>
+    </lightning-card>
+    
+</template>

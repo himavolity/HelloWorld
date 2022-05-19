@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Accordian Example">
+        <lightning-accordion active-section-name="SF" onsectiontoggle={Callme}>
+            <lightning-accordion-section name='SF' label="Salesforce">
+            <p> This is for salesforce.</p>
+        </lightning-accordion-section>
+            <lightning-accordion-section name="java" label="Java">
+                <p> this is the section for java.</p>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="Python" label="Python">
+                <p> This section is for python.</p>
+            </lightning-accordion-section>
+        </lightning-accordion>
+        <div>{activesection}</div>
+    </lightning-card>
+</template>

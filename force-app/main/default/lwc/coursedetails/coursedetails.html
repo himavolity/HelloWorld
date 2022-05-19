@@ -1,0 +1,88 @@
+<template>
+    <lightning-layout horizontal-align="spread" class="slds-border_bottom">
+        <lightning-layout-item size="6" class="slds-text-heading_large">
+            Course Details
+        </lightning-layout-item>
+        <lightning-layout-item size="6" class="slds-m-around_xx-small slds-text-align_right" alignment-bump="right">
+            <p class="slds-m-right_small">Fields marked with an asterisk <span style="color:red">(*)</span> are
+                required.</p>
+        </lightning-layout-item>
+    </lightning-layout><br>
+    <div class="slds-p-horizontal_small slds-text-body_regular">
+        <lightning-record-edit-form object-api-name="Course_Detail__c" density="comfy" 
+            onsubmit={preventDefaults} onchange={handlechange}  onsuccess={handleSucess}>
+
+            <div class="slds-grid slds-gutters_xx-large">
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Name" required></lightning-input-field>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Course_ID__c" required></lightning-input-field>
+                    </span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters_xx-large">
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Course_Start_Date__c" required></lightning-input-field>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Course_End_Date__c" required></lightning-input-field>
+                    </span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters_xx-large">
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Course_Fee__c" required></lightning-input-field>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Years_of_Experience__c" required></lightning-input-field>
+                    </span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters_xx-large">
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Client_Name__c" required></lightning-input-field>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Completed_Courses__c" required></lightning-input-field>
+                    </span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters_xx-large">
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Payment_Detail__c" required></lightning-input-field>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <span>
+                        <lightning-input-field field-name="Additonal_Comments__c" required></lightning-input-field>
+                    </span>
+                </div>
+
+            </div><br>
+            <!--      <hr style="display: block; height: 2px; margin: 1px; padding: 10px; border-top: 3px solid rgb(3, 3, 61); ">
+       <footer>
+                <lightning-button variant="brand" label="Exit Student Form" onclick={handleApprove}
+                    icon-name="utility:close" class="slds-float_left">
+                </lightning-button>
+                <lightning-button variant="brand" label="Save & Next" type="submit" onclick={handlesubmitcontact}
+                    icon-name="utility:forward" class="slds-float_right">
+                </lightning-button>
+            </footer> -->
+
+        </lightning-record-edit-form>
+    </div>
+</template>
