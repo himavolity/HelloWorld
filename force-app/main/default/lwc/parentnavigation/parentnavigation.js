@@ -1,5 +1,5 @@
 import { LightningElement, track, api } from 'lwc';
-import {updateRecord } from 'lightning/uiRecordApi';
+import { updateRecord } from 'lightning/uiRecordApi';
 import { getRecord } from 'lightning/uiRecordApi';
 import { createRecord } from 'lightning/uiRecordApi';
 import STUDENT_OBJECT from '@salesforce/schema/Student_Details__c';
@@ -48,7 +48,7 @@ export default class Parentnavigation extends NavigationMixin(LightningElement) 
     console.log("I am in selectedpath " + this.step);
     this.currentPath = event.detail;
   }
-  
+
   /*
   
      Create the recordInput object
@@ -71,35 +71,58 @@ export default class Parentnavigation extends NavigationMixin(LightningElement) 
 */
   nextHandler(event) {
     if (this.step === 1) {
-      event.preventDefault();  
+      event.preventDefault();
       console.log("I am in parent");
-/*      this.template.querySelector('c-studentdetails').querySelectorAll('lightning-input-fields')
-            .reduce((validSoFar, inputFields) => {
-                //inputFields.reportValidity();
-               console.log(" >> "+inputFields);
-            }, true);
-*/
-      var isValid = this.template.querySelector('c-studentdetails').validateForm(event);   
-      console.log("Checking in parent is valid  "+isValid);
-      if(isValid) {
-        console.log("I can call student handlesave and next "+isValid);
-        this.template.querySelector('c-studentdetails').handlesaveandnext(event); 
+      /*      this.template.querySelector('c-studentdetails').querySelectorAll('lightning-input-fields')
+                  .reduce((validSoFar, inputFields) => {
+                      //inputFields.reportValidity();
+                     console.log(" >> "+inputFields);
+                  }, true);
+      */
+      var isValid = this.template.querySelector('c-studentdetails').validateForm(event);
+      console.log("Checking in parent is valid  " + isValid);
+      if (isValid) {
+        console.log("I can call student handlesave and next " + isValid);
+        this.template.querySelector('c-studentdetails').handlesaveandnext(event);
         this.step = this.step + 1;
-    this.currentPath = this.pathElements[this.step];
-    console.log("I am in next in path " + this.step);
+        this.currentPath = this.pathElements[this.step];
+        console.log("I am in next in path " + this.step);
       }
-    }   
+    }
     else if (this.step === 2) {
+      var isValid = this.template.querySelector('c-contactdetails').validateForm(event);
       console.log(" calling contact details from parent");
-      this.template.querySelector('c-contactdetails').handlesaveandnext(event);
-    }else if (this.step === 3)
-    this.template.querySelector('c-coursedetails').handlesaveandnext(event);   
-    else if (this.step === 4)
+      if (isvalid) {
+        this.template.querySelector('c-contactdetails').handlesaveandnext(event);
+        this.step = this.step + 1;
+        this.currentPath = this.pathElements[this.step];
+        console.log("I am in next in path " + this.step);
+      }
+    } else if (this.step === 3) {
+      var isValid = this.template.querySelector('c-coursedetails').validateForm(event);
+      console.log(" calling contact details from parent");
+      if (isvalid) {
+      this.template.querySelector('c-coursedetails').handlesaveandnext(event);
+      this.step = this.step + 1;
+      this.currentPath = this.pathElements[this.step];
+      console.log("I am in next in path " + this.step);
+    } 
+  }else if (this.step === 4) {
+    var isValid = this.template.querySelector('c-paymentdetails').validateForm(event);
+      console.log(" calling contact details from parent");
+      if (isvalid) {
       this.template.querySelector('c-paymentdetails').handlesaveandnext(event);
-    else
+      this.step = this.step + 1;
+      this.currentPath = this.pathElements[this.step];
+      console.log("I am in next in path " + this.step);
+    } 
+  }else {
       this.template.querySelector('c-review').handlesaveandnext(event);
+      this.step = this.step + 1;
+      this.currentPath = this.pathElements[this.step];
+      console.log("I am in next in path " + this.step);
+    }
 
-    
   }
   backHandler(event) {
     this.step = this.step - 1;
