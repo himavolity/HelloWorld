@@ -6,10 +6,7 @@ import { updateRecord } from 'lightning/uiRecordApi';
 export default class studentdetails extends LightningElement(NavigationMixin) {
     @api objectApiName = 'Student_Details__c';
     @api recordId;
-    /*  redirect = true;
-   resetpage = false; */
-
-    @api handlesaveandnext(event) {
+      @api handlesaveandnext(event) {
         console.log("I am in contact handlesaveandnext")
         event.preventDefault();       // stop the form from submitting
         const fields = event.detail.fields;
