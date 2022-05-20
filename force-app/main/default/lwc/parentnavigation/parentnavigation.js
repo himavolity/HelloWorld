@@ -71,26 +71,35 @@ export default class Parentnavigation extends NavigationMixin(LightningElement) 
 */
   nextHandler(event) {
     if (this.step === 1) {
+      event.preventDefault();  
       console.log("I am in parent");
-      this.template.querySelector('c-studentdetails').querySelectorAll('lightning-input-fields')
+/*      this.template.querySelector('c-studentdetails').querySelectorAll('lightning-input-fields')
             .reduce((validSoFar, inputFields) => {
                 //inputFields.reportValidity();
                console.log(" >> "+inputFields);
             }, true);
-      this.template.querySelector('c-studentdetails').handlesaveandnext(event); 
+*/
+      var isValid = this.template.querySelector('c-studentdetails').validateForm(event);   
+      console.log("Checking in parent is valid  "+isValid);
+      if(isValid) {
+        console.log("I can call student handlesave and next "+isValid);
+        this.template.querySelector('c-studentdetails').handlesaveandnext(event); 
+        this.step = this.step + 1;
+    this.currentPath = this.pathElements[this.step];
+    console.log("I am in next in path " + this.step);
+      }
     }   
-    else if (this.step === 2)
+    else if (this.step === 2) {
+      console.log(" calling contact details from parent");
       this.template.querySelector('c-contactdetails').handlesaveandnext(event);
-    else if (this.step === 3)
+    }else if (this.step === 3)
     this.template.querySelector('c-coursedetails').handlesaveandnext(event);   
     else if (this.step === 4)
       this.template.querySelector('c-paymentdetails').handlesaveandnext(event);
     else
       this.template.querySelector('c-review').handlesaveandnext(event);
 
-    this.step = this.step + 1;
-    this.currentPath = this.pathElements[this.step];
-    console.log("I am in next in path " + this.step);
+    
   }
   backHandler(event) {
     this.step = this.step - 1;
