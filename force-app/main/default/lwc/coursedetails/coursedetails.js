@@ -16,7 +16,7 @@ export default class coursedetails extends LightningElement(NavigationMixin) {
         let isValid = true;
         let i;
         var formFields = Array.from(this.template.querySelectorAll('lightning-input-field'));
-
+        console.log("hellooooooooooooooooooooo");
         for (i = 0; i < formFields.length; i++) {
             if(!formFields[i].reportValidity()) {
                 isValid=false;
