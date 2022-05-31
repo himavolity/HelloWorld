@@ -92,7 +92,7 @@ export default class Parentnavigation extends NavigationMixin(LightningElement) 
     else if (this.step === 2) {
       var isValid = this.template.querySelector('c-contactdetails').validateForm(event);
       console.log(" calling contact details from parent");
-      if (isvalid) {
+      if (isValid) {
         this.template.querySelector('c-contactdetails').handlesaveandnext(event);
         this.step = this.step + 1;
         this.currentPath = this.pathElements[this.step];
@@ -101,7 +101,7 @@ export default class Parentnavigation extends NavigationMixin(LightningElement) 
     } else if (this.step === 3) {
       var isValid = this.template.querySelector('c-coursedetails').validateForm(event);
       console.log(" calling contact details from parent");
-      if (isvalid) {
+      if (isValid) {
       this.template.querySelector('c-coursedetails').handlesaveandnext(event);
       this.step = this.step + 1;
       this.currentPath = this.pathElements[this.step];
@@ -110,7 +110,7 @@ export default class Parentnavigation extends NavigationMixin(LightningElement) 
   }else if (this.step === 4) {
     var isValid = this.template.querySelector('c-paymentdetails').validateForm(event);
       console.log(" calling contact details from parent");
-      if (isvalid) {
+      if (isValid) {
       this.template.querySelector('c-paymentdetails').handlesaveandnext(event);
       this.step = this.step + 1;
       this.currentPath = this.pathElements[this.step];
