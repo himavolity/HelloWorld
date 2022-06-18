@@ -1,0 +1,353 @@
+<template>
+<div class="slds-align_absolute-center" style="height:10rem;font-size: 500%;color:black">
+    <h1> STUDENT PORTAL</h1>
+</div>
+    <div class="slds-card slds-m-horizontal_large" style="font-family: 'Open Sans', sans-serif">
+
+       
+            <!-- Header -->
+            <div class="slds-card__header slds-p-bottom_small">
+                <header>
+                    <lightning-progress-indicator current-step={step} type="path" variant="base" has-error="false">
+                        <lightning-progress-step label="Student Info" value="1" onclick={nextPage}></lightning-progress-step>
+                        <lightning-progress-step label="Contact Info" value="2" onclick={nextPage}></lightning-progress-step>
+                        <lightning-progress-step label="Course Registration" value="3" onclick={nextPage}></lightning-progress-step>
+                        <lightning-progress-step label="Payment Info" value="4" onclick={nextPage}></lightning-progress-step>
+                        <lightning-progress-step label="Review" value="5" onclick={nextPage}></lightning-progress-step>
+                    </lightning-progress-indicator>
+                </header>
+            </div>
+
+            <!-- First Page -->
+            <template if:true={showFirstPage}>
+                <div class="slds-grid slds-wrap slds-border_bottom">
+                    <div class="slds-size_1-of-2">
+                <p class="slds-m-around_x-small" style="font-size:200%">Student Information</p>
+            </div>
+            <div class="slds-size_1-of-2">
+            <p class="slds-m-around_x-small" style="font-size:100%;padding:2%" >Fields marked with an asterisk * are required</p>
+            </div>
+            </div>
+            <br>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_1-of-2"> 
+                    <lightning-input type="text" class="slds-m-around_x-small" label="Student Name" required maxlength="25" minlength="4" message-when-too-short="Minimum 4 characters needs to be entered." message-when-too-long="More than 25 characters are not allowed."></lightning-input>
+                </div>
+                <div class="slds-size_1-of-2"> 
+            <lightning-input type="number" class="slds-m-around_x-small" label="Student Id(Enter numeric values only)" placeholder="XXXXXXX" required></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap"> 
+            <div class="slds-size_1-of-2">  
+            <lightning-input type="date" class="slds-m-around_x-small" label="Date Of Birth" placeholder="MM/DD/YYYY" required></lightning-input>
+            </div> 
+            <div class="slds-size_1-of-2">
+                <lightning-combobox
+                               name="Gender"
+                               class="slds-m-around_x-small"
+                               label="Gender"
+                               value={value}
+                               placeholder="--None--"
+                               options={genderoptions}
+                               required>
+                   </lightning-combobox>
+            
+            </div>
+            </div>
+            </template>
+
+            <!-- Second Page -->
+            <template if:true={showSecondPage}>
+                <div class="slds-grid slds-wrap slds-border_bottom">
+                    <div class="slds-size_1-of-2">
+                <p class="slds-m-around_x-small" style="font-size:200%">Contact Information</p>
+            </div>
+            <div class="slds-size_1-of-2">
+            <p class="slds-m-around_x-small" style="font-size:100%;padding:2%" >Fields marked with an asterisk * are required</p>
+            </div>
+            </div>
+                
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2">
+                <lightning-input type="text" class="slds-m-around_x-small" label="Student Address" required></lightning-input>
+                </div>
+                <div class="slds-size_1-of-2">
+                <lightning-input type="text" class="slds-m-around_x-small" label="Student Address 2" required></lightning-input>
+                </div>
+                </div>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2">
+                        <lightning-combobox
+                                       name="County"
+                                       class="slds-m-around_x-small"
+                                       label="County"
+                                       value={value}
+                                       placeholder="--None--"
+                                       options={countyoptions}>
+                           </lightning-combobox>
+                        </div>
+                        <div class="slds-size_1-of-2">
+                            <lightning-input type="text" class="slds-m-around_x-small" label="City" required></lightning-input>
+                            </div>
+                    
+                
+                
+                </div>
+                <div class="slds-grid slds-wrap">
+                
+                
+                   <div class="slds-size_1-of-2">
+                   <lightning-combobox
+                               name="State"
+                               class="slds-m-around_x-small"
+                               label="State"
+                               value={value}
+                               disabled="true"
+                               placeholder="New Jersey"
+                               options={options}>
+                   </lightning-combobox>
+                   </div>
+                   <div class="slds-size_1-of-2">
+                    <lightning-input type="number" class="slds-m-around_x-small" label="Zip Code" required></lightning-input>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap">
+                <div class="slds-size_1-of-2">
+                <lightning-input type="email" class="slds-m-around_x-small" label="Email id" required></lightning-input>
+                </div>
+                <div class="slds-size_1-of-2">
+                    <lightning-input type="tel" class="slds-m-around_x-small" label="Phone Number" name="phoneno" pattern="[(]{1}[0-9]{3}[)]{1}[0-9]{3}-[0-9]{4}" message-when-pattern-mismatch="Phone number format should be (XXX) XXX-XXXX (only numeric values)." placeholder="(XXX)XXX-XXXX"></lightning-input>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Third Page -->
+            <template if:true={showThirdPage}>
+                <div class="slds-grid slds-wrap slds-border_bottom">
+                    <div class="slds-size_1-of-2">
+                <p class="slds-m-around_x-small" style="font-size:200%">Course Registration</p>
+            </div>
+            <div class="slds-size_1-of-2">
+            <p class="slds-m-around_x-small" style="font-size:100%;padding:2%" >Fields marked with an asterisk * are required</p>
+            </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_1-of-2"> 
+                    <lightning-input type="text" class="slds-m-around_x-small" label="Course Name" required></lightning-input>
+                </div>
+                <div class="slds-size_1-of-2"> 
+                    <lightning-input type="number" class="slds-m-around_x-small" label="Course Fee" formatter="currency" step="0.01"></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_1-of-2"> 
+                    <lightning-input type="text" class="slds-m-around_x-small" label="Trainer"></lightning-input>
+                </div>
+                <div class="slds-size_1-of-2"> 
+                    <lightning-input type="text" class="slds-m-around_x-small" label="PreRequisites"></lightning-input>
+                </div>
+            </div>
+            </template>
+
+            <!-- Fourth Page -->
+            <template if:true={showFourthPage}>
+                <div class="slds-grid slds-wrap slds-border_bottom">
+                    <div class="slds-size_1-of-2">
+                <p class="slds-m-around_x-small" style="font-size:200%">Payment Information</p>
+            </div>
+            <div class="slds-size_1-of-2">
+            <p class="slds-m-around_x-small" style="font-size:100%;padding:2%" >Fields marked with an asterisk * are required</p>
+            </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                
+                
+                <div class="slds-size_1-of-2">
+                <lightning-combobox
+                            name="modeofPayment"
+                            class="slds-m-around_x-small"
+                            label="Mode of Payment"
+                            value={value}
+                            placeholder="--None--"
+                            options={paymentoptions}>
+                </lightning-combobox>
+                </div>
+                <div class="slds-size_1-of-2">
+                 <lightning-input type="number" class="slds-m-around_x-small" label="Card Number" placeholder="XXXX-XXXX-XXXX-XXXX" required></lightning-input>
+                 </div>
+             </div>
+             <div class="slds-grid slds-wrap">
+                <div class="slds-size_1-of-2"> 
+                    <lightning-input type="password" class="slds-m-around_x-small" label="Enter your CVV" placeholder="XXX" name="cvvInput" required ></lightning-input>
+                </div>
+                <div class="slds-size_1-of-2"> 
+                    <lightning-input type="date" class="slds-m-around_x-small" label="Expiry Date" placeholder="MM/DD/YYYY" required></lightning-input>
+                </div>
+            </div>
+            </template>
+
+            <!-- Fifth Page -->
+            <template if:true={showFifthPage}>
+                <div class="slds-grid slds-wrap slds-border_bottom">
+                    <div class="slds-size_1-of-2">
+                <p class="slds-m-around_x-small" style="font-size:200%">Review student details </p>
+            </div>            
+            </div>
+            
+        <br>
+        <lightning-accordion class="student-accordian" allow-multiple-sections-open>
+        <lightning-accordion-section name="firstPage" label="Student Information">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-2"> 
+                <lightning-input type="text" class="slds-m-around_x-small" label="Student Name" required maxlength="25" minlength="4" message-when-too-short="Minimum 4 characters needs to be entered." message-when-too-long="More than 25 characters are not allowed."></lightning-input>
+            </div>
+            <div class="slds-size_1-of-2"> 
+        <lightning-input type="number" class="slds-m-around_x-small" label="Student Id(Enter numeric values only)" placeholder="XXXXXXX" required></lightning-input>
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap"> 
+        <div class="slds-size_1-of-2">  
+        <lightning-input type="date" class="slds-m-around_x-small" label="Date Of Birth" placeholder="MM/DD/YYYY" required></lightning-input>
+        </div> 
+        <div class="slds-size_1-of-2">
+            <lightning-combobox
+                           name="Gender"
+                           class="slds-m-around_x-small"
+                           label="Gender"
+                           value={value}
+                           placeholder="--None--"
+                           options={genderoptions}
+                           required>
+               </lightning-combobox>
+        
+        </div>
+        </div>
+    </lightning-accordion-section>
+        
+    <lightning-accordion-section name="secondPage" label="Contact Information">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-2">
+        <lightning-input type="text" class="slds-m-around_x-small" label="Student Address" required></lightning-input>
+        </div>
+        <div class="slds-size_1-of-2">
+        <lightning-input type="text" class="slds-m-around_x-small" label="Student Address 2" required></lightning-input>
+        </div>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-2">
+                <lightning-combobox
+                               name="County"
+                               class="slds-m-around_x-small"
+                               label="County"
+                               value={value}
+                               placeholder="--None--"
+                               options={countyoptions}>
+                   </lightning-combobox>
+                </div>
+                <div class="slds-size_1-of-2">
+                    <lightning-input type="text" class="slds-m-around_x-small" label="City" required></lightning-input>
+                    </div>
+            
+        
+        
+        </div>
+        <div class="slds-grid slds-wrap">
+        
+        
+           <div class="slds-size_1-of-2">
+           <lightning-combobox
+                       name="State"
+                       class="slds-m-around_x-small"
+                       label="State"
+                       value={value}
+                       disabled="true"
+                       placeholder="New Jersey"
+                       options={options}>
+           </lightning-combobox>
+           </div>
+           <div class="slds-size_1-of-2">
+            <lightning-input type="number" class="slds-m-around_x-small" label="Zip Code" required></lightning-input>
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap">
+        <div class="slds-size_1-of-2">
+        <lightning-input type="email" class="slds-m-around_x-small" label="Email id" required></lightning-input>
+        </div>
+        <div class="slds-size_1-of-2">
+            <lightning-input type="tel" class="slds-m-around_x-small" label="Phone Number" name="phoneno" pattern="[(]{1}[0-9]{3}[)]{1}[0-9]{3}-[0-9]{4}" message-when-pattern-mismatch="Phone number format should be (XXX) XXX-XXXX (only numeric values)." placeholder="(XXX)XXX-XXXX"></lightning-input>
+            </div>
+        </div>
+    </lightning-accordion-section>
+    <lightning-accordion-section name="thirdPage" label="Course Registration">
+    <div class="slds-grid slds-wrap">
+        <div class="slds-size_1-of-2"> 
+            <lightning-input type="text" class="slds-m-around_x-small" label="Course Name" required></lightning-input>
+        </div>
+        <div class="slds-size_1-of-2"> 
+            <lightning-input type="number" class="slds-m-around_x-small" label="Course Fee" formatter="currency" step="0.01"></lightning-input>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-size_1-of-2"> 
+            <lightning-input type="text" class="slds-m-around_x-small" label="Trainer"></lightning-input>
+        </div>
+        <div class="slds-size_1-of-2"> 
+            <lightning-input type="text" class="slds-m-around_x-small" label="PreRequisites"></lightning-input>
+        </div>
+    </div>
+    </lightning-accordion-section>
+    <lightning-accordion-section name="fourthPage" label="Payment Information">
+        <div class="slds-grid slds-wrap">
+        <div class="slds-size_1-of-2">
+            <lightning-combobox
+                        name="modeofPayment"
+                        class="slds-m-around_x-small"
+                        label="Mode of Payment"
+                        value={value}
+                        placeholder="--None--"
+                        options={paymentoptions}>
+            </lightning-combobox>
+            </div>
+            <div class="slds-size_1-of-2">
+             <lightning-input type="number" class="slds-m-around_x-small" label="Card Number" placeholder="XXXX-XXXX-XXXX-XXXX" required></lightning-input>
+             </div>
+            </div>
+         <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-2"> 
+                <lightning-input type="password" class="slds-m-around_x-small" label="Enter your CVV" placeholder="XXX" name="cvvInput" required ></lightning-input>
+            </div>
+            <div class="slds-size_1-of-2"> 
+                <lightning-input type="date" class="slds-m-around_x-small" label="Expiry Date" placeholder="MM/DD/YYYY" required></lightning-input>
+            </div>
+        </div>
+    </lightning-accordion-section>
+</lightning-accordion>
+            </template>
+
+            <!-- Footer -->
+            <footer class="slds-modal__footer slds-align_absolute-center" style="padding: 0.50rem 1rem;">
+                <template if:true={showFirstPage}>
+                    <lightning-button label="Next" variant="neutral" value="2" onclick={nextPage}></lightning-button>
+                </template>
+                <template if:true={showSecondPage}>
+                    <lightning-button class="slds-p-right_xx-small" label="Previous" variant="neutral" value="1" onclick={previousPage}></lightning-button>
+                    <lightning-button label="Next" variant="neutral" value="3" onclick={nextPage}></lightning-button>
+                </template>
+                <template if:true={showThirdPage}>
+                    <lightning-button class="slds-p-right_xx-small" label="Previous" variant="neutral" value="2" onclick={previousPage}></lightning-button>
+                    <lightning-button label="Next" variant="neutral" value="4" onclick={nextPage}></lightning-button>
+                </template>
+                <template if:true={showFourthPage}>
+                    <lightning-button class="slds-p-right_xx-small" label="Previous" variant="neutral" value="3" onclick={previousPage}></lightning-button>
+                    <lightning-button label="Next" variant="neutral" value="5" onclick={nextPage}></lightning-button>
+                </template>
+                <template if:true={showFifthPage}>
+                    <lightning-button class="slds-p-right_xx-small" label="Previous" variant="neutral" value="4" onclick={previousPage}></lightning-button>
+                    <lightning-button label="Save" variant="brand" onclick={showSuccessToast}></lightning-button>
+                </template>
+            </footer>
+        
+
+    </div>
+
+</template>
